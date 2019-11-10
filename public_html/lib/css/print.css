@@ -1,0 +1,61 @@
+
+th {
+    padding: 2px 4px;
+    font-weight: bold;
+    background-color: #666; 
+    color: white;
+    border-top: 1px solid #666;
+    border-bottom: 1px solid lightgrey;
+}
+
+th.clara { 
+    background-color: #FFFFFF; 
+    color: black;
+    border-top: 1px dotted lightgrey;
+}
+
+td {
+    padding: 2px;
+}
+
+td.tit {
+    font-weight: bold;
+    background-color: #DDD;
+    border-top: 1px solid lightgrey;
+    border-bottom: 1px solid lightgrey;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.baja {
+    color: grey;
+}
+
+.negrita {
+    font-weight: bold;
+}
+
+.dangercolor {
+    color: #A82D24;
+}
+
+.successcolor {
+    color: #155740;
+}
+
+/* Actas */
+
+.indice, .indice * {
+    text-decoration: none;
+    color: #333;
+}
+
+.cuerpoacta p {
+    text-align: justify;
+}

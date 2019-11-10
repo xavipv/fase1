@@ -1,0 +1,202 @@
+.nav-item {
+    padding: 0;
+}
+.submenu {
+    border:1px solid lightblue;
+    padding: 3px 6px;
+    font-size: 0.9em;
+    vertical-align: middle;
+}
+
+.listadowrap {
+    overflow-y: scroll;
+    white-space: normal;
+}
+
+.listado {
+    overflow-y: scroll;
+    overflow-x: hidden; 
+    white-space: nowrap;
+    height: 200px;
+}
+
+.listado-elem, .listado-elem-des, .listado-elem-baja {
+    cursor: pointer;
+    font-size: 0.9em;
+    border-bottom: 1px solid transparent;
+}
+
+.listado-elem {
+    font-weight: 300;
+}
+
+.listado-elem-des {
+    font-weight: lighter;
+}
+
+.listado-elem-baja {
+    color: #A82D24;
+    font-weight: 300;
+}
+
+.listado-elem:hover, .listado-elem-des:hover, .listado-elem-baja:hover {
+    color: green;
+    border-bottom: 1px dotted green;
+}
+
+.listado-tit {
+    font-size: 1.3em;
+}
+
+.divvacio, .divgaraje1, .divgaraje2, .divgarajesel {
+    font-size: .8em;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    border-radius: 3px;
+    margin: 0;
+    margin-left: 1px;
+    margin-top: 1px;
+    line-height: 30px;
+}
+
+.divgaraje1, .divgaraje2, .divgarajesel {
+    float: left;
+    /* cursor: pointer; */
+    box-shadow: 2px 2px 2px #CCC;
+}
+
+.divgarajesel {
+    background-color: yellow;
+    border: 1px solid red;
+}
+.divgaraje1 {
+    background-color: #EEFFEE;
+    border: 1px solid green;
+}
+.divgaraje2 {
+    background-color: #EEEEFF;
+    border: 1px solid blue;
+}
+
+.separadoabajo {
+    margin-bottom: 1px !important;
+}
+
+.solonumeros {
+    text-align: right;
+}
+
+.mayusculas {
+    text-transform: uppercase !important;
+}
+
+.dangercolor {
+    color: #A82D24;
+}
+
+.successcolor {
+    color: #155740;
+}
+
+.card {
+    margin: 2px;
+}
+
+.card-header {
+
+}
+
+.card-body {
+    text-align: justify;
+    padding: 15px;
+}
+
+.indice {
+    text-align: justify;
+    text-indent: -25px;
+    padding: 1px 60px;
+}
+
+.cuerpoacta {
+    text-align: justify;
+    padding: 10px 20px 10px 50px;
+}
+
+.cuerpoacta h2 {
+    text-indent: -45px; 
+}
+
+#ainicio {
+    position:fixed;
+    bottom: 10px;
+    right: 10px;
+}
+
+#aportales {
+    position:fixed;
+    bottom: 20px;
+    right: 50px;
+}
+
+#btnfechair {
+    margin-top: 10px;
+    position:fixed;
+    right: 10px;
+}
+
+.trumbowyg-box,
+.trumbowyg-editor,
+.trumbowyg-textarea {
+    white-space:normal;
+    text-align: justify;
+    font: inherit;
+    min-height: 100px;
+}
+
+.table-ultra th, .table-ultra td {
+    padding: 2px;
+}
+
+.table-ultra th {
+    background-color: #F8F8F8;
+    border-top: 1px solid lightgrey;
+    border-bottom: 1px solid lightgrey;
+}
+
+.table-ultra th.clara {
+    background-color: #FDFDFD;
+    border-top: 1px dotted lightgrey;
+    /* border-bottom: 1px solid lightgrey; */
+}
+
+.table-ultra td.tit {
+    font-weight: bold;
+    border-top: 1px solid lightgrey;
+    border-bottom: 1px solid lightgrey;
+    text-align: center;
+    background-color: #FCFCFC;
+}
+
+.table-ultra td {
+    white-space: normal;
+}
+
+.baja {
+    color: grey;
+}
+
+.btn-portal {
+    margin: 1px;
+    height: 32px;
+    width: 32px;
+    padding: 5px 0;
+}
+
+.negrita {
+    font-weight: bold;
+}
+
+.readonly {
+    background-color: #F8F8F8 !important;
+}
