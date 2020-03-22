@@ -920,6 +920,37 @@ function js_cantidadTotal() {
 }
 
 /**
+ * Activa o desactiva el boton de imprimir.
+ */
+function js_presupuesto() {
+    var valor = $('#general').val();
+    for(var i=1; i<= gNumPort; i++) {
+        valor += $('#portal'+i).val();
+    }
+    
+    if(valor > 0 && $('#meses').val() > 0) { 
+        $('#imprimir').prop('disabled',false);
+        $('#imprimirpdf').prop('disabled',false);
+        xajax_getPresupuesto(xajax.getFormValues('frmdatos'));
+    } else { 
+        $('#imprimir').prop('disabled',true);
+        $('#imprimirpdf').prop('disabled',true);
+        $('#divbusqueda').html('');
+    }
+}
+
+/**
+ * Copia el valor del presupuesto del portal 1 en el resto de portales.
+ */
+function js_copiarPresupuestos() {
+    var valor = $('#portal1').val();
+    for(var i=2; i<= gNumPort; i++) {
+        $('#portal'+i).val(valor);
+    }
+    xajax_getPresupuesto(xajax.getFormValues('frmdatos'));
+}
+
+/**
  * Controla que el portal inicial no sea mayor que el final.
  */
 function js_rangoPortales() {

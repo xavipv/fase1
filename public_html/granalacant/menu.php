@@ -73,6 +73,7 @@ $activo = f_getMenuAcciones($pagina);
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="calculos.php">C&aacute;lculo cuota</a>
                     <a class="dropdown-item" href="calctotal.php">C&aacute;lculo totales</a>
+                    <a class="dropdown-item" href="presupuesto.php">C&aacute;lculo presupuesto</a>
                 </div>
             </li>
         </ul>

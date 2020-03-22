@@ -60,6 +60,7 @@ $xajax->register(XAJAX_FUNCTION, 'getListadoJunta');
 $xajax->register(XAJAX_FUNCTION, 'getListadoPersonas');
 $xajax->register(XAJAX_FUNCTION, 'getListadoPropietarios');
 $xajax->register(XAJAX_FUNCTION, 'getPersonasIniciales');
+$xajax->register(XAJAX_FUNCTION, 'getPresupuesto');
 $xajax->register(XAJAX_FUNCTION, 'getPropietarios');
 $xajax->register(XAJAX_FUNCTION, 'getRepresentantes');
 $xajax->register(XAJAX_FUNCTION, 'getSecretario');
@@ -1282,6 +1283,20 @@ function getCalculos($frm) {
 function getCantidadTotal($frm) {
     $response = new xajaxResponse();
     $datos = f_getCantidadTotal($frm);
+    $response->assign("divbusqueda", "innerHTML", $datos);
+    $response->assign("datosdiv", "value", $datos);
+    return $response;
+}
+
+/**
+ * Calcula la cuota a pagar segun un presupuesto dado.
+ * 
+ * @param array $frm Datos del formulario.
+ * @return \xajaxResponse
+ */
+function getPresupuesto($frm) {
+    $response = new xajaxResponse();
+    $datos = f_getPresupuesto($frm);
     $response->assign("divbusqueda", "innerHTML", $datos);
     $response->assign("datosdiv", "value", $datos);
     return $response;
