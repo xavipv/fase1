@@ -17,7 +17,7 @@ defined('_DOCS_') or define('_DOCS_', filter_input(INPUT_SERVER, 'DOCUMENT_ROOT'
 if (!$RootIsDocs) {
     defined('_ROOT_') or define('_ROOT_', dirname(_DOCS_));
 } else {
-    defined('_ROOT_') or define('_ROOT_');
+    defined('_ROOT_') or define('_ROOT_', _DOCS_ );
 }
 defined('_CGIB_') or define('_CGIB_', _ROOT_ . '/cgi-bin');
 defined('_CLAS_') or define('_CLAS_', _CGIB_ . '/clases');
