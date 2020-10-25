@@ -33,7 +33,7 @@ $actaPDF = f_getNombreActaPDF($fec);
                 </li>
                 <li class="nav-item text-right col-sm-2">
                     <div id="submenu3">
-                        <a id="actapdf" href="/actas/<?php echo $actaPDF; ?>" target="_blank" role="button" title="Ver en PDF" class="btn btn-outline-success"><span class="oi oi-eye"></span></a>
+                        <a id="actapdf" href="<?php echo _ACTA_ . '/' . $actaPDF; ?>" target="_blank" role="button" title="Ver en PDF" class="btn btn-outline-success"><span class="oi oi-eye"></span></a>
                         <a id="aedit" href="actasedit.php?fecha=<?php echo $fec; ?>" role="button" title="Editar" class="btn btn-outline-success"><span class="oi oi-pencil"></span></a>
                         <button class="btn btn-outline-success" style="cursor: pointer" id="imprimir" title="Imprimir en un PDF" onclick="$('#frmdatos').submit();"><span class="oi oi-print"></span></button>
                     </div>

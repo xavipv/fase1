@@ -32,6 +32,7 @@ defined('_XAJX_') or define('_XAJX_', _LIBR_ . '/xajax/xajax_core/xajax.inc.php'
 // URLs
 defined('_USRV_') or define('_USRV_', 'http://' . filter_input(INPUT_SERVER, 'HTTP_HOST') . $SubdirRoot);
 defined('_ULIB_') or define('_ULIB_', _USRV_ . '/lib');
+defined('_ACTA_') or define('_ACTA_', _USRV_ . '/actas');
 defined('_UXJX_') or define('_UXJX_', _ULIB_ . '/xajax');
 
 /**
