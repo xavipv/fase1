@@ -5,7 +5,7 @@ $pagina = basename(__FILE__);
 $aIncludes = array('config.inc.php', 'funciones.inc.php', 'funciones.xajax.php');
 
 // Carga las constantes.
-(include(dirname(filter_input(INPUT_SERVER, 'DOCUMENT_ROOT')) . "/cgi-bin/includes/constantes.inc.php")) or die("<p>Error al incluir <b>/cgi-bin/includes/constantes.inc.php</b></p>");
+(include ("../lib/const.php")) or (die("Error al incluir <b>../lib/const.php"));
 
 (require _LIBR_ . '/phplot/phplot.php') or die("<p>Error al incluir la libreria <b>phplot.php</b></p>");
 

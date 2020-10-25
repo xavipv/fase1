@@ -6,9 +6,19 @@
 // Si es true muestra las constantes y finaliza la ejecucion.
 $DEBUG = false;
 
+// El directorio ROOT es el mismo que DOCS?
+$RootIsDocs = false;    // true o false
+
+// Las paginas están directamente en el raiz o en un subdirectorio?
+$SubdirRoot = '';       // Subdirectorio en la forma '/subdir'
+
 // Directorios
-defined('_DOCS_') or define('_DOCS_', filter_input(INPUT_SERVER, 'DOCUMENT_ROOT'));
-defined('_ROOT_') or define('_ROOT_', dirname(_DOCS_));
+defined('_DOCS_') or define('_DOCS_', filter_input(INPUT_SERVER, 'DOCUMENT_ROOT') . $SubdirRoot);
+if (!$RootIsDocs) {
+    defined('_ROOT_') or define('_ROOT_', dirname(_DOCS_));
+} else {
+    defined('_ROOT_') or define('_ROOT_');
+}
 defined('_CGIB_') or define('_CGIB_', _ROOT_ . '/cgi-bin');
 defined('_CLAS_') or define('_CLAS_', _CGIB_ . '/clases');
 defined('_INCL_') or define('_INCL_', _CGIB_ . '/includes');
@@ -20,7 +30,7 @@ defined('_AUTC_') or define('_AUTC_', _CLAS_ . '/php/autocarga.php');
 defined('_XAJX_') or define('_XAJX_', _LIBR_ . '/xajax/xajax_core/xajax.inc.php');
 
 // URLs
-defined('_USRV_') or define('_USRV_', 'http://' . filter_input(INPUT_SERVER, 'HTTP_HOST'));
+defined('_USRV_') or define('_USRV_', 'http://' . filter_input(INPUT_SERVER, 'HTTP_HOST') . $SubdirRoot);
 defined('_ULIB_') or define('_ULIB_', _USRV_ . '/lib');
 defined('_UXJX_') or define('_UXJX_', _ULIB_ . '/xajax');
 

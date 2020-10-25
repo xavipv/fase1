@@ -5,7 +5,7 @@ $pagina = basename(__FILE__);
 $aIncludes = array('config.inc.php', 'funciones.inc.php', 'funciones.xajax.php');
 
 // Carga las constantes.
-(include(dirname(filter_input(INPUT_SERVER, 'DOCUMENT_ROOT')) . "/cgi-bin/includes/constantes.inc.php")) or die("<p>Error al incluir <b>/cgi-bin/includes/constantes.inc.php</b></p>");
+(include ("../lib/const.php")) or (die("Error al incluir <b>../lib/const.php"));
 
 // Array con los campos del formulario que se pueden elegir para ser mostrados o no.
 $campos = array('coeur','coef200','coef100','coeblo','coegar','codigo','fase','metros','sumas','dife');
