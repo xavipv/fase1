@@ -12,7 +12,7 @@ $aIncludes = array('config.inc.php', 'funciones.inc.php', 'funciones.xajax.php')
     <head>
         <?php echo f_getCabeceraHTML("Presupuesto"); ?>
     </head>
-    <body onload="//$('#cantidad').focus();">
+    <body onload="$('#general').focus();">
         <div id="cabecera">
             <!-- Barra de navegacion -->
             <?php include 'menu.php'; ?>
@@ -33,14 +33,14 @@ $aIncludes = array('config.inc.php', 'funciones.inc.php', 'funciones.xajax.php')
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="cantidad" class="col-sm-1 col-form-label text-right">General:</label>
+                                <label for="general" class="col-sm-1 col-form-label text-right">General:</label>
                                 <div class="col-sm-2">
                                     <div class="input-group">
                                         <input type="text" class="form-control solonumeros" id="general" name="general" value="" placeholder="General" onclick="$(this).select();" onkeyup="js_presupuesto()">
                                         <span class="input-group-addon">€</span>
                                     </div>
                                 </div>
-                                <label for="cantidad" class="col-sm-1 col-form-label text-right">Portal 1:</label>
+                                <label for="portal1" class="col-sm-1 col-form-label text-right">Portal 1:</label>
                                 <div class="col-sm-2">
                                     <div class="input-group">
                                         <span id="repetir" name="repetir" class="input-group-addon" style="display: none; cursor: pointer" onclick="js_copiarPresupuestos();"><span class="oi oi-arrow-thick-right"></span></span>
@@ -48,14 +48,14 @@ $aIncludes = array('config.inc.php', 'funciones.inc.php', 'funciones.xajax.php')
                                         <span class="input-group-addon">€</span>
                                     </div>
                                 </div>
-                                <label for="cantidad" class="col-sm-1 col-form-label text-right">Portal 2:</label>
+                                <label for="portal2" class="col-sm-1 col-form-label text-right">Portal 2:</label>
                                 <div class="col-sm-2">
                                     <div class="input-group">
                                         <input type="text" class="form-control solonumeros" id="portal2" name="portal2" value="" placeholder="Portal 2" onclick="$(this).select();" onkeyup="js_presupuesto()">
                                         <span class="input-group-addon">€</span>
                                     </div>
                                 </div>
-                                <label for="cantidad" class="col-sm-1 col-form-label text-right">Portal 3:</label>
+                                <label for="portal3" class="col-sm-1 col-form-label text-right">Portal 3:</label>
                                 <div class="col-sm-2">
                                     <div class="input-group">
                                         <input type="text" class="form-control solonumeros" id="portal3" name="portal3" value="" placeholder="Portal 3" onclick="$(this).select();" onkeyup="js_presupuesto()">
@@ -64,28 +64,28 @@ $aIncludes = array('config.inc.php', 'funciones.inc.php', 'funciones.xajax.php')
                                 </div> 
                             </div>
                             <div class="form-group row">
-                                <label for="cantidad" class="col-sm-1 col-form-label text-right">Portal 4:</label>
+                                <label for="portal4" class="col-sm-1 col-form-label text-right">Portal 4:</label>
                                 <div class="col-sm-2">
                                     <div class="input-group">
                                         <input type="text" class="form-control solonumeros" id="portal4" name="portal4" value="" placeholder="Portal 4" onclick="$(this).select();" onkeyup="js_presupuesto()">
                                         <span class="input-group-addon">€</span>
                                     </div>
                                 </div>
-                                <label for="cantidad" class="col-sm-1 col-form-label text-right">Portal 5:</label>
+                                <label for="portal5" class="col-sm-1 col-form-label text-right">Portal 5:</label>
                                 <div class="col-sm-2">
                                     <div class="input-group">
                                         <input type="text" class="form-control solonumeros" id="portal5" name="portal5" value="" placeholder="Portal 5" onclick="$(this).select();" onkeyup="js_presupuesto()">
                                         <span class="input-group-addon">€</span>
                                     </div>
                                 </div>
-                                <label for="cantidad" class="col-sm-1 col-form-label text-right">Portal 6:</label>
+                                <label for="portal6" class="col-sm-1 col-form-label text-right">Portal 6:</label>
                                 <div class="col-sm-2">
                                     <div class="input-group">
                                         <input type="text" class="form-control solonumeros" id="portal6" name="portal6" value="" placeholder="Portal 6" onclick="$(this).select();" onkeyup="js_presupuesto()">
                                         <span class="input-group-addon">€</span>
                                     </div>
                                 </div>
-                                <label for="cantidad" class="col-sm-1 col-form-label text-right">Portal 7:</label>
+                                <label for="portal7" class="col-sm-1 col-form-label text-right">Portal 7:</label>
                                 <div class="col-sm-2">
                                     <div class="input-group">
                                         <input type="text" class="form-control solonumeros" id="portal7" name="portal7" value="" placeholder="Portal 7" onclick="$(this).select();" onkeyup="js_presupuesto()">
@@ -94,28 +94,28 @@ $aIncludes = array('config.inc.php', 'funciones.inc.php', 'funciones.xajax.php')
                                 </div> 
                             </div>
                             <div class="form-group row">
-                                <label for="cantidad" class="col-sm-1 col-form-label text-right">Portal 8:</label>
+                                <label for="portal8" class="col-sm-1 col-form-label text-right">Portal 8:</label>
                                 <div class="col-sm-2">
                                     <div class="input-group">
                                         <input type="text" class="form-control solonumeros" id="portal8" name="portal8" value="" placeholder="Portal 8" onclick="$(this).select();" onkeyup="js_presupuesto()">
                                         <span class="input-group-addon">€</span>
                                     </div>
                                 </div>
-                                <label for="cantidad" class="col-sm-1 col-form-label text-right">Portal 9:</label>
+                                <label for="portal9" class="col-sm-1 col-form-label text-right">Portal 9:</label>
                                 <div class="col-sm-2">
                                     <div class="input-group">
                                         <input type="text" class="form-control solonumeros" id="portal9" name="portal9" value="" placeholder="Portal 9" onclick="$(this).select();" onkeyup="js_presupuesto()">
                                         <span class="input-group-addon">€</span>
                                     </div>
                                 </div>
-                                <label for="cantidad" class="col-sm-1 col-form-label text-right">Portal 10:</label>
+                                <label for="portal10" class="col-sm-1 col-form-label text-right">Portal 10:</label>
                                 <div class="col-sm-2">
                                     <div class="input-group">
                                         <input type="text" class="form-control solonumeros" id="portal10" name="portal10" value="" placeholder="Portal 10" onclick="$(this).select();" onkeyup="js_presupuesto()">
                                         <span class="input-group-addon">€</span>
                                     </div>
                                 </div>
-                                <label for="cantidad" class="col-sm-1 col-form-label text-right">Portal 11:</label>
+                                <label for="portal11" class="col-sm-1 col-form-label text-right">Portal 11:</label>
                                 <div class="col-sm-2">
                                     <div class="input-group">
                                         <input type="text" class="form-control solonumeros" id="portal11" name="portal11" value="" placeholder="Portal 11" onclick="$(this).select();" onkeyup="js_presupuesto()">
@@ -124,28 +124,28 @@ $aIncludes = array('config.inc.php', 'funciones.inc.php', 'funciones.xajax.php')
                                 </div> 
                             </div>
                             <div class="form-group row">
-                                <label for="cantidad" class="col-sm-1 col-form-label text-right">Portal 12:</label>
+                                <label for="portal12" class="col-sm-1 col-form-label text-right">Portal 12:</label>
                                 <div class="col-sm-2">
                                     <div class="input-group">
                                         <input type="text" class="form-control solonumeros" id="portal12" name="portal12" value="" placeholder="Portal 12" onclick="$(this).select();" onkeyup="js_presupuesto()">
                                         <span class="input-group-addon">€</span>
                                     </div>
                                 </div>
-                                <label for="cantidad" class="col-sm-1 col-form-label text-right">Portal 13:</label>
+                                <label for="portal13" class="col-sm-1 col-form-label text-right">Portal 13:</label>
                                 <div class="col-sm-2">
                                     <div class="input-group">
                                         <input type="text" class="form-control solonumeros" id="portal13" name="portal13" value="" placeholder="Portal 13" onclick="$(this).select();" onkeyup="js_presupuesto()">
                                         <span class="input-group-addon">€</span>
                                     </div>
                                 </div>
-                                <label for="cantidad" class="col-sm-1 col-form-label text-right">Portal 14:</label>
+                                <label for="portal14" class="col-sm-1 col-form-label text-right">Portal 14:</label>
                                 <div class="col-sm-2">
                                     <div class="input-group">
                                         <input type="text" class="form-control solonumeros" id="portal14" name="portal14" value="" placeholder="Portal 14" onclick="$(this).select();" onkeyup="js_presupuesto()">
                                         <span class="input-group-addon">€</span>
                                     </div>
                                 </div>
-                                <label for="cantidad" class="col-sm-1 col-form-label text-right">Portal 15:</label>
+                                <label for="portal15" class="col-sm-1 col-form-label text-right">Portal 15:</label>
                                 <div class="col-sm-2">
                                     <div class="input-group">
                                         <input type="text" class="form-control solonumeros" id="portal15" name="portal15" value="" placeholder="Portal 15" onclick="$(this).select();" onkeyup="js_presupuesto()">
