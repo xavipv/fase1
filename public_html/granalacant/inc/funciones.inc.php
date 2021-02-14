@@ -254,7 +254,9 @@ function f_getMenuAcciones($pagina) {
         case "graph_deudaport.php": $activo[6] = "active"; break;
         // Otros.
         case "calculos.php": $activo[7] = "active"; break;
-        case "transformar.php": $activo[7] = "active"; break;
+        case "calctotal.php": $activo[7] = "active"; break;
+        case "presupuesto.php": $activo[7] = "active"; break;
+        case "presupuestoportal.php": $activo[7] = "active"; break;
         // Inicio.
         default: $activo[0] = "active"; break;
     }
@@ -3299,4 +3301,177 @@ function f_getPresupuestoTitulo($por, $frm) {
     $fTit .= "<th style=\"width: 12%\" class=\"text-right\">€ Bloque</th>";
     $fTit .= "<th style=\"width: 12%\" class=\"text-right\">Cuota</th>";
     return "$fTit</tr>";    
+}
+
+/* PRESUPUESTO DE UN PORTAL */
+
+
+/**
+ * Obtiene un listado con las cuotas del presupuesto de un portal.
+ * 
+ * @global \Apartamentos $oApars Instancia de la clase Apartamentos.
+ * @param array $frm Datos del formulario.
+ * @return string Codigo HTML del listado de cuotas.
+ */
+function f_getPresupuestoPortal($frm) {
+    
+    // Instancia de la clase Apartamentos.
+    global $oApars;
+    $aAp = $oApars->getApartamentos();
+    
+    
+    // Obtiene valores del formulario.
+    $can = $frm['cantidad'];    // Cantidad a cobrar.
+    $por = $frm['portal'];      // Portal seleccionado.
+    $tco = $frm['tipocoef'];    // Tipo de coeficiente a aplicar.
+    $mes = $frm['meses'];       // Meses para pagar.
+
+    // Calculos previos.
+    $sumageneral = 0;
+    $numgarajes = 0;
+    foreach($aAp as $apa => $aApar) {
+        if($aApar[0] == $por) {
+            $sumageneral += $aApar[6];  // Suma los coeficientes generales del bloque.
+        }
+        $numgarajes += $aApar[12];      // Numero total de plazas de garaje.
+    }
+    $coefgar = 100 / $numgarajes;       // Coeficiente para un garaje.
+
+    // Tipo de coeficiente.
+    switch($tco) {
+        case 1: $tipo = "Coeficiente general aplicado al portal"; break;
+        case 2: $tipo = "Coeficiente general"; break;
+        case 3: $tipo = "Coeficiente de $numgarajes plazas de garaje"; break;
+        default: $tipo = "Coeficiente de portal"; break;
+    }
+
+    // Inicializa las sumas: apartamento, metros, coeficiente y cuota.
+    $sumApa = 0; $sumMe2 = 0; $sumPag = 0; $sumCob = 0; $sumEub = 0; 
+    
+    // Titulo de los datos.
+    $fApa = f_getPresupuestoTituloPortal($frm);
+    
+    // Recorre los apartamentos.
+    foreach ($aAp as $apa => $aApar) {
+        //array('0 portal','1 piso','2 letra','3 tipo','4 metros','5 terraza','6 coeficiente','7 coef.blo','8 finca','9 numreg','10 refcat','11 metcat','12 numgar')
+
+        // En el coeficiente por plazas de garaje solo mostrara los que tengan plaza de garaje asignada.
+        $mostrar = true;
+        if($tco == 3) {
+            $mostrar = ($aApar[12] > 0) ? true : false;
+        }
+
+        // Muestra solo los apartamentos elegidos.
+        if($mostrar) {
+
+            // Solo saca los apartamentos del portal seleccionado.
+            if($aApar[0] == $por) {
+                // Fila del apartamento.
+                $fApa .= "<tr>";
+
+                // Codigo del apartamento, opcional.
+                if (isset($frm['codigo'])) {
+                    $fApa .= "<td>$apa</td>";
+                }
+
+                // Nombre del apartamento, se muestra siempre.
+                $fApa .= "<td>" . $aApar[0] . "-" .$aApar[1] . $aApar[2] . "</td>"; 
+                $sumApa++;
+
+                // Metros cuadrados, opcional.
+                if(isset($frm['metros'])) {
+                    $fApa .= "<td class=\"text-right\">" . number_format($aApar[4],2,',','.') . " m<sup>2</sup></td>";
+                    $sumMe2 += $aApar[4];
+                }
+
+                // Coeficiente, opcional. 
+                switch($tco) {
+                    case 1:     // Coeficiente general aplicado al bloque.
+                        $coef = $aApar[6] * 100 / $sumageneral;
+                        $deci = 4;
+                        break;  
+                    case 2:     // Coeficiente general.
+                        $coef = $aApar[6];
+                        $deci = 4;
+                        break;    
+                    case 3:     // Coeficiente por plaza de garaje.
+                        $coef = $aApar[12] * $coefgar; 
+                        $deci = 2;
+                        break;
+                    default:    // Coeficiente de bloque.
+                        $coef = $aApar[7]; 
+                        $deci = 2;
+                        break;                      
+                }
+
+                if(isset($frm['coeficientes'])) {
+                    $fApa .= "<td class=\"text-right\">" . number_format($coef,$deci,',','.') . " %</td>";
+                    $sumCob += $coef;
+                }
+
+                // Total a pagar, se muestra siempre.
+                $pagar = $coef * $can / 100;
+                $fApa .= "<td class=\"text-right successcolor\">" . number_format($pagar,2,',','.') . " €</td>";
+                $sumPag += $pagar;
+
+                // Cuota a pagar, se muestra siempre.
+                $cuotab = ($coef * $can) / ($mes * 100);
+                $fApa .= "<td class=\"text-right successcolor\">" . number_format($cuotab,2,',','.') . " €</td>";
+                $sumEub += $cuotab;
+                
+                // Cierra las filas.
+                $fApa .= "</tr>";
+            }
+        }
+    }
+    
+    // Pone las sumas.
+    $fApa .= ($frm['sumas']) ? f_getPresupuestoSumasPortal($frm, $sumApa, $sumMe2, $sumCob, $deci, $sumPag, $sumEub) : "";
+    
+    // Devuelve todos los datos.
+    $mesestxt = ($mes == 1) ? "mes" : "meses";
+    $fApa = "<h4><a name=\"inicio\"></a>Cuotas mensuales del <b>portal $por</b> para $mes $mesestxt</h4><table class=\"table table-condensed table-ultra\">$fApa</table>";
+    $fApa .= (isset($frm['coeficientes'])) ? "<i>(1) $tipo</i>" : "";
+    return $fApa;
+}
+
+/**
+ * Obtiene el titulo del presupuesto de un bloque.
+ * 
+ * @param array $frm Datos del formulario.
+ * @return string Codigo HTML del titulo.
+ */
+function f_getPresupuestoTituloPortal($frm) {
+    $fTit = "<tr>";
+    $fTit .= (isset($frm['codigo'])) ? "<th style=\"width: 12%\">C&oacute;digo</th>" : "";
+    $fTit .= "<th style=\"width: 12%\" class=\"text-left\">Apartamento</th>";
+    $fTit .= (isset($frm['metros'])) ? "<th style=\"width: 12%\" class=\"text-right\">Metros</th>" : "";
+    $fTit .= (isset($frm['coeficientes'])) ? "<th style=\"width: 12%\" class=\"text-right\">Coeficiente<sup>1</sup></th>" : "";
+    $fTit .= "<th style=\"width: 12%\" class=\"text-right\">A pagar</th>";
+    $fTit .= "<th style=\"width: 12%\" class=\"text-right\">Cuota</th>";
+    return "$fTit</tr>";    
+}
+
+/**
+ * Obtiene las sumas de los presupuestos.
+ * 
+ * @param array $frm Datos del formulario.
+ * @param int $apa Numero de apartamentos.
+ * @param int $me2 Metros cuadrados.
+ * @param int $coe Coeficiente aplicado.
+ * @param int $dec Numero de decimales para el coeficiente.
+ * @param int $pag Cantidad a pagar.
+ * @param int $cuo Cantidad de la cuota.
+ * @return string Codigo HTML de las sumas.
+ */
+function f_getPresupuestoSumasPortal($frm, $apa, $me2, $coe, $dec, $pag, $cuo) {
+    // Inicia la fila de las sumas.
+    $fTit = "<tr>";
+    $fTit .= (isset($frm['codigo'])) ? "<td class=\"tit\">&nbsp;</td>" : "";
+    $fTit .= "<td class=\"tit text-left\">Total:&nbsp;$apa</td>";
+    $fTit .= (isset($frm['metros'])) ? "<td class=\"tit text-right\">" . number_format($me2,2,',','.') . "&nbsp;m<sup>2</sup></td>" : "";
+    $fTit .= (isset($frm['coeficientes'])) ? "<td class=\"tit text-right\">" . number_format($coe,$dec,',','.') . "&nbsp;%</td>" : "";
+    $fTit .= "<td class=\"tit text-right successcolor\">" . number_format($pag,2,',','.') . "&nbsp;€</td>";
+    $fTit .= "<td class=\"tit text-right successcolor\">" . number_format($cuo,2,',','.') . "&nbsp;€</td>";
+    return "$fTit</tr>";
 }

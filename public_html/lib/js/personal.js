@@ -977,3 +977,22 @@ function js_controlFechas() {
         $('#distintos').prop('disabled', false);
     }
 }
+
+
+/**
+ * Activa o desactiva el boton de imprimir.
+ */
+function js_presupuestoportal() {
+    var cantidad = $('#cantidad').val();
+    var meses = $('#meses').val();
+    
+    if(cantidad > 0 && meses > 0) { 
+        $('#imprimir').prop('disabled',false);
+        $('#imprimirpdf').prop('disabled',false);
+        xajax_getPresupuestoPortal(xajax.getFormValues('frmdatos'));
+    } else { 
+        $('#imprimir').prop('disabled',true);
+        $('#imprimirpdf').prop('disabled',true);
+        $('#divbusqueda').html('');
+    }
+}
